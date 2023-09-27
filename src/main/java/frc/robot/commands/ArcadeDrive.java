@@ -14,16 +14,17 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class ArcadeDrive extends CommandBase {
   @SuppressWarnings({ "PMD.UnusedPrivateField", "PMD.SingularField" })
   private final Drivetrain drivetrain;
-  private final DoubleSupplier speed;
+  private final DoubleSupplier leftSpeed, rightSpeed;
 
   /**
    * Creates a new ArcadeDrive command.
    *
    * @param drivetrain The subsystem used by this command.
    */
-  public ArcadeDrive(Drivetrain drivetrain, DoubleSupplier speed) {
+  public ArcadeDrive(Drivetrain drivetrain, DoubleSupplier leftSpeed, DoubleSupplier rightSpeed) {
     this.drivetrain = drivetrain;
-    this.speed = speed;
+    this.leftSpeed = leftSpeed;
+    this.rightSpeed = rightSpeed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrain);
   }
@@ -36,13 +37,15 @@ public class ArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    drivetrain.setSpeed(speed.getAsDouble());
+    drivetrain.setLeftSpeed(leftSpeed.getAsDouble());
+    drivetrain.setRightSpeed(rightSpeed.getAsDouble());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    drivetrain.setSpeed(0);
+    drivetrain.setLeftSpeed(0);
+    drivetrain.setRightSpeed(0);
   }
 
   // Returns true when the command should end.

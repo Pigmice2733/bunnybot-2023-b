@@ -10,24 +10,34 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase {
-    CANSparkMax leftMotor;
-    double motorSpeed;
+    CANSparkMax leftMotor, rightMotor;
+    double leftSpeed, rightSpeed;
 
     public Drivetrain() {
         leftMotor = new CANSparkMax(0, MotorType.kBrushless);
-        motorSpeed = 0;
+        rightMotor = new CANSparkMax(1, MotorType.kBrushless);
+        leftSpeed = rightSpeed = 0;
     }
 
     @Override
     public void periodic() {
-        leftMotor.set(motorSpeed);
+        leftMotor.set(leftSpeed);
+        rightMotor.set(rightSpeed);
     }
 
-    public void setSpeed(double speed) {
-        motorSpeed = speed;
+    public void setLeftSpeed(double speed) {
+        leftSpeed = speed;
     }
 
-    public double getSpeed() {
-        return motorSpeed;
+    public void setRightSpeed(double speed) {
+        rightSpeed = speed;
+    }
+
+    public double getLeftSpeed() {
+        return leftSpeed;
+    }
+
+    public double getRightSpeed() {
+        return rightSpeed;
     }
 }

@@ -33,7 +33,7 @@ public class RobotContainer {
   public RobotContainer() {
     drivetrain = new Drivetrain();
     controller = new XboxController(0);
-    arcadeDrive = new ArcadeDrive(drivetrain, this::getControllerValue);
+    arcadeDrive = new ArcadeDrive(drivetrain, this::getLeftValue, this::getRightValue);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -50,8 +50,12 @@ public class RobotContainer {
   private void configureButtonBindings() {
   }
 
-  private double getControllerValue() {
+  private double getLeftValue() {
     return controller.getLeftTriggerAxis();
+  }
+
+  private double getRightValue() {
+    return controller.getRightTriggerAxis();
   }
 
   /**
