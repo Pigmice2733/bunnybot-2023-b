@@ -4,19 +4,32 @@
 
 package frc.robot.subsystems;
 
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-public class ExampleSubsystem extends SubsystemBase {
-  /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+public class Intake extends SubsystemBase {
+  CANSparkMax motor;
+  double motorSpeed;
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  /** Creates a new ExampleSubsystem. */
+  public Intake() {
+    motor = new CANSparkMax(0, MotorType.kBrushless);
+    motorSpeed = 0;
   }
 
   @Override
-  public void simulationPeriodic() {
-    // This method will be called once per scheduler run during simulation
+  public void periodic() {
+    motor.set(motorSpeed);
+    // This method will be called once per scheduler run
+  }
+
+  public void setSpeed(double speed) {
+    motorSpeed = speed;
+  }
+
+  public double getSpeed() {
+    return motorSpeed;
   }
 }
