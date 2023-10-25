@@ -6,8 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.RunIntake;
-import frc.robot.subsystems.Intake;
+import frc.robot.commands.RunArm;
+import frc.robot.subsystems.Arm;
 import edu.wpi.first.wpilibj2.command.Command;
 
 /**
@@ -21,15 +21,15 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final Intake intake;
-  private final RunIntake runIntakeCommand;
+  private final Arm intake;
+  private final RunArm runIntakeCommand;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    intake = new Intake();
-    runIntakeCommand = new RunIntake(intake);
+    intake = new Arm();
+    runIntakeCommand = new RunArm(intake);
     // Configure the button bindings
     configureButtonBindings();
 
