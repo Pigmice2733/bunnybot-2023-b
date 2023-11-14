@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.RunIntake;
 import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -23,15 +24,18 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final Intake intake;
   private final RunIntake runIntakeCommand;
+  private final XboxController controller;
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
     intake = new Intake();
-    runIntakeCommand = new RunIntake(intake);
-    // Configure the button bindings
-    configureButtonBindings();
+    controller = new XboxController(0);
+    runIntakeCommand = new RunIntake(intake, controller::getRightTriggerAxis);
+
+  // Configure the button bindings
+  configureButtonBindings();
 
   }
 
@@ -44,6 +48,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
   }
 
   /**
